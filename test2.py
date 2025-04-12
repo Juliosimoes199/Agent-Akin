@@ -31,7 +31,7 @@ def hello_world():
     return 'Olá do Flask!'
 
 
-@app.route('/test')
+@app.route('/test', methods=['GET'])
 def test():
     async def main():
         task = """
@@ -56,7 +56,7 @@ def test():
         result = history.final_result()
         print(history)
         for step in history.steps:
-            print(f"Step {step['number']}: {step['action']} - Status: {step['status']}")
+            return jsonify(f"Step {step['number']}: {step['action']} - Status: {step['status']}")
     
         
     
@@ -67,8 +67,4 @@ def test():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-
-
-
-
 
